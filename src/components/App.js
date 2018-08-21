@@ -3,13 +3,12 @@ import Header from './shared/Header'
 import ProfilesList from './profiles/list'
 import ProfileForm from './profiles/form'
 import faker from 'faker'
+import profiles from '../db'
 
 class App extends Component {
   constructor () {
     super()
-    this.state = {
-      profiles: Array.from({ length: 36 }, () => faker.helpers.contextualCard())
-    }
+    this.state = { profiles }
   }
 
   addNewProfile = ({ username, avatar, email }) => {
