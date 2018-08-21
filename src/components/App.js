@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Header from './shared/Header'
 import ProfilesList from './profiles/ProfilesList'
 import ProfileForm from './profiles/ProfileForm'
-import faker from 'faker'
 import profiles from '../db'
 
 class App extends Component {
