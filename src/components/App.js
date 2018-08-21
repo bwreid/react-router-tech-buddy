@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './shared/Header'
-import ProfilesList from './profiles/list'
-import ProfileForm from './profiles/form'
+import ProfilesList from './profiles/ProfilesList'
+import ProfileForm from './profiles/ProfileForm'
 import faker from 'faker'
 import profiles from '../db'
 
