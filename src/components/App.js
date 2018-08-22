@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import Header from './shared/Header'
-import ProfilesHome from './containers/ProfilesHome'
-import ProfilesShow from './containers/ProfilesShow'
-import ProfileForm from './profiles/ProfileForm'
-import Profile from './profiles/Profile'
+import ProfilesHome from './profiles/ProfilesHome'
+import ProfilesShow from './profiles/ProfilesShow'
 import { Switch, Route } from 'react-router-dom'
 import profiles from '../db'
 
