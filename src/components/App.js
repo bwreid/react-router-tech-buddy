@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Header from './shared/Header'
-import ProfilesList from './profiles/ProfilesList'
+import ProfilesHome from './containers/ProfilesHome'
+import ProfilesShow from './containers/ProfilesShow'
 import ProfileForm from './profiles/ProfileForm'
+import Profile from './profiles/Profile'
+import { Switch, Route } from 'react-router-dom'
 import profiles from '../db'
 
 class App extends Component {
@@ -24,14 +27,15 @@ class App extends Component {
       <main>
         <Header />
         <section className="container">
-          <div className="row">
-            <div className="col">
-              <ProfilesList profiles={ this.state.profiles } />
-            </div>
-            <div className="col-4">
-              <ProfileForm addNewProfile={ this.addNewProfile } />
-            </div>
-          </div>
+          <Switch>
+            <Route exact path="/profiles" render={() => {
+              return <ProfilesHome profiles={ this.state.profiles } addNewProfile={ this.addNewProfile }/>
+            }}/>
+            <Route exact path="/profiles/:username" render={({ match }) => {
+              const user = this.state.profiles.find(element => element.username === match.params.username)
+              return <ProfilesShow profile={ user } />
+            }}/>
+          </Switch>
         </section>
       </main>
     )

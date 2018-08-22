@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 class ProfileForm extends Component {
   constructor (props) {
@@ -19,6 +20,7 @@ class ProfileForm extends Component {
   onSubmit = async (event) => {
     event.preventDefault()
     this.props.addNewProfile(this.state)
+    this.props.history.push(`/profiles/${this.state.username}`)
     this.setState({
       username: '',
       avatar: '',
@@ -65,4 +67,4 @@ class ProfileForm extends Component {
   }
 }
 
-export default ProfileForm
+export default withRouter(ProfileForm)
