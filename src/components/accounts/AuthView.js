@@ -7,14 +7,9 @@ class AuthView extends Component {
     super(props)
 
     this.state = {
-      isLogin: true,
       username: '',
       password: ''
     }
-  }
-
-  toggleView = () => {
-    this.setState({ isLogin: !this.state.isLogin })
   }
 
   onChange = (event) => {
@@ -27,21 +22,17 @@ class AuthView extends Component {
     event.preventDefault()
     const { username, password } = this.state
     try {
-      await auth.login(username, password)
-      await this.props.loginToApp()
-      this.props.history.push('/profiles')
+      const response = await auth.login(username, password)
+      console.log('LOGIN RESPONSE:', response)
     } catch (e) {
       console.error(e)
     }
   }
 
   render () {
-    const currentView = this.state.isLogin ? 'Login' : 'Signup'
-    const otherView = !this.state.isLogin ? 'Login' : 'Signup'
-
     return (
       <section>
-        <h1>{ currentView }</h1>
+        <h1>Login</h1>
         <form onSubmit={ this.onSubmit } className="border rounded p-4">
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -64,7 +55,6 @@ class AuthView extends Component {
               id="password"/>
           </div>
           <button type="submit" className="btn btn-info text-light">Submit</button>
-          <button onClick={ this.toggleView } className="btn btn-light ml-4">{ otherView }</button>
         </form>
       </section>
     )
