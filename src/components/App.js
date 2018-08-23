@@ -5,12 +5,18 @@ import ProfilesHome from './profiles/ProfilesHome'
 import ProfilesShow from './profiles/ProfilesShow'
 import AuthView from './accounts/AuthView'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import auth from '../lib/auth'
 import profiles from '../db'
 
 class App extends Component {
   constructor () {
     super()
     this.state = { profiles, isLoggedIn: false }
+  }
+
+  componentDidMount = async () => {
+    const isLoggedIn = await auth.verify()
+    this.setState({ isLoggedIn })
   }
 
   addNewProfile = ({ username, avatar, email }) => {
