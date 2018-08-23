@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Header = () => (
-  <header className="jumbotron jumbotron-fluid bg-info text-light border-bottom">
+  <header className="jumbotron jumbotron-fluid bg-info text-light border-bottom mb-0">
     <div className="container">
       <h1 className="display-4">Tech Buddy</h1>
       <p className="lead">Find a buddy... in tech!</p>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from './shared/Header'
+import Navigation from './shared/Navigation'
 import ProfilesHome from './profiles/ProfilesHome'
 import ProfilesShow from './profiles/ProfilesShow'
 import { Switch, Route } from 'react-router-dom'
@@ -8,7 +9,7 @@ import profiles from '../db'
 class App extends Component {
   constructor () {
     super()
-    this.state = { profiles }
+    this.state = { profiles, isLoggedIn: false }
   }
 
   addNewProfile = ({ username, avatar, email }) => {
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <main>
         <Header />
+        <Navigation isLoggedIn={ this.state.isLogged } />
         <section className="container">
           <Switch>
             <Route exact path="/profiles" render={() => {
