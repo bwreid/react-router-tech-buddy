@@ -3,7 +3,8 @@ import Header from './shared/Header'
 import Navigation from './shared/Navigation'
 import ProfilesHome from './profiles/ProfilesHome'
 import ProfilesShow from './profiles/ProfilesShow'
-import { Switch, Route } from 'react-router-dom'
+import AuthView from './accounts/AuthView'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import profiles from '../db'
 
 class App extends Component {
@@ -35,6 +36,8 @@ class App extends Component {
               const user = this.state.profiles.find(element => element.username === match.params.username)
               return <ProfilesShow profile={ user } />
             }}/>
+            <Route exact path="/login" component={ AuthView } />
+            <Redirect to="/login" />
           </Switch>
         </section>
       </main>
