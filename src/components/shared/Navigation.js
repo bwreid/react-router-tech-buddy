@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = ({ isLoggedIn, logout }) => {
   return (
     <div className="container-fluid mb-4 bg-light text-dark">
       <div className="row">
@@ -10,7 +10,7 @@ const Navigation = ({ isLoggedIn }) => {
             {
               isLoggedIn ?
               <li className="nav-item d-block">
-                <button className="btn btn-link">Logout</button>
+                <button onClick={ logout } className="btn btn-link">Logout</button>
               </li> :
               <li className="nav-item">
                 <Link to="/login" className="nav-link">Login</Link>

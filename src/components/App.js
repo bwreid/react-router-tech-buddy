@@ -28,15 +28,20 @@ class App extends Component {
     })
   }
 
-  updateLoggedInStatus = () => {
-    this.setState({ isLoggedIn: true })
+  updateLoggedInStatus = (isLoggedIn) => {
+    this.setState({ isLoggedIn })
+  }
+
+  logout = () => {
+    auth.logout()
+    this.updateLoggedInStatus(false)
   }
 
   render() {
     return (
       <main>
         <Header />
-        <Navigation isLoggedIn={ this.state.isLoggedIn } />
+        <Navigation isLoggedIn={ this.state.isLoggedIn } logout={ this.logout } />
         <section className="container">
           <Switch>
             <Route exact path="/profiles" render={() => {

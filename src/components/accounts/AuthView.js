@@ -23,7 +23,7 @@ class AuthView extends Component {
     const { username, password } = this.state
     try {
       const response = await auth.login(username, password)
-      this.props.updateLoggedInStatus()
+      this.props.updateLoggedInStatus(response)
       console.log('LOGIN RESPONSE:', response)
     } catch (e) {
       console.error(e)
