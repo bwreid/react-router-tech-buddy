@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <main>
         <Header />
-        <Navigation isLoggedIn={ this.state.isLogged } />
+        <Navigation isLoggedIn={ this.state.isLoggedIn } />
         <section className="container">
           <Switch>
             <Route exact path="/profiles" render={() => {
