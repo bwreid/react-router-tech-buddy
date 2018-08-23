@@ -22,11 +22,15 @@ class App extends Component {
     })
   }
 
+  updateLoggedInStatus = () => {
+    this.setState({ isLoggedIn: true })
+  }
+
   render() {
     return (
       <main>
         <Header />
-        <Navigation isLoggedIn={ this.state.isLogged } />
+        <Navigation isLoggedIn={ this.state.isLoggedIn } />
         <section className="container">
           <Switch>
             <Route exact path="/profiles" render={() => {
@@ -36,7 +40,7 @@ class App extends Component {
               const user = this.state.profiles.find(element => element.username === match.params.username)
               return <ProfilesShow profile={ user } />
             }}/>
-            <Route exact path="/login" component={ AuthView } />
+            <Route exact path="/login" render={ () => <AuthView updateLoggedInStatus={ this.updateLoggedInStatus } /> } />
             <Redirect to="/login" />
           </Switch>
         </section>
