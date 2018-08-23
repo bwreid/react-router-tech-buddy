@@ -1,7 +1,8 @@
 import React from 'react'
 import Profile from '../profiles/Profile'
 
-const ProfilesHome = ({ profile }) => {
+const ProfilesHome = ({ match, profiles }) => {
+  const profile = profiles.find(({ username }) => username === match.params.username)
   return (
     <div className="row">
       <div className="col">

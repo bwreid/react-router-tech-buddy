@@ -5,6 +5,7 @@ import ProfilesHome from './profiles/ProfilesHome'
 import ProfilesShow from './profiles/ProfilesShow'
 import AuthView from './accounts/AuthView'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import AuthenticatedRoute from './helpers/AuthenticatedRoute'
 import auth from '../lib/auth'
 import profiles from '../db'
 
@@ -44,15 +45,17 @@ class App extends Component {
         <Navigation isLoggedIn={ this.state.isLoggedIn } logout={ this.logout } />
         <section className="container">
           <Switch>
-            <Route exact path="/profiles" render={() => {
-              if (!this.state.isLoggedIn) return <Redirect to="/login"/>
-              return <ProfilesHome profiles={ this.state.profiles } addNewProfile={ this.addNewProfile }/>
-            }}/>
-            <Route exact path="/profiles/:username" render={({ match }) => {
-              if (!this.state.isLoggedIn) return <Redirect to="/login"/>
-              const user = this.state.profiles.find(element => element.username === match.params.username)
-              return <ProfilesShow profile={ user } />
-            }}/>
+            <AuthenticatedRoute
+              exact
+              path="/profiles"
+              { ...this.state }
+              addNewProfile={ this.addNewProfile }
+              component={ ProfilesHome } />
+            <AuthenticatedRoute
+              exact
+              path="/profiles/:username"
+              { ...this.state }
+              component={ ProfilesShow } />
             <Route exact path="/login" render={ () => {
               if (this.state.isLoggedIn) return <Redirect to="/profiles"/>
               return <AuthView updateLoggedInStatus={ this.updateLoggedInStatus } />
