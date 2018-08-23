@@ -51,7 +51,10 @@ class App extends Component {
               const user = this.state.profiles.find(element => element.username === match.params.username)
               return <ProfilesShow profile={ user } />
             }}/>
-            <Route exact path="/login" render={ () => <AuthView updateLoggedInStatus={ this.updateLoggedInStatus } /> } />
+            <Route exact path="/login" render={ () => {
+              if (this.state.isLoggedIn) return <Redirect to="/profiles"/>
+              return <AuthView updateLoggedInStatus={ this.updateLoggedInStatus } />
+            } } />
             <Redirect to="/login" />
           </Switch>
         </section>
