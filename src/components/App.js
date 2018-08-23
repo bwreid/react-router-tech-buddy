@@ -45,9 +45,11 @@ class App extends Component {
         <section className="container">
           <Switch>
             <Route exact path="/profiles" render={() => {
+              if (!this.state.isLoggedIn) return <Redirect to="/login"/>
               return <ProfilesHome profiles={ this.state.profiles } addNewProfile={ this.addNewProfile }/>
             }}/>
             <Route exact path="/profiles/:username" render={({ match }) => {
+              if (!this.state.isLoggedIn) return <Redirect to="/login"/>
               const user = this.state.profiles.find(element => element.username === match.params.username)
               return <ProfilesShow profile={ user } />
             }}/>
